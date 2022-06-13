@@ -129,3 +129,118 @@ int main() {
 	pthread_exit(NULL);
 	return 0;
 	}
+
+
+	/*-----------------------------------------------------------------------------------*/
+
+#include<pthread.h>
+#include<unistd.h>
+#include<stdlib.h>
+#include<ncurses.h>
+#include <time.h>
+
+int ncaballos, nvueltas, largopista;
+
+typedef struct{
+	int carril;
+	int pos;
+	char caballo;
+} Caballos;
+
+int funcionCab(Caballos *c){
+  int x=c->pos;
+  int y=c->carril;
+  mvprintw(y,x," %c",c->caballo);
+  refresh();
+  usleep(100000/10);
+  if((rand() % 2)) x++;
+  return x;
+}
+
+
+int main(void){
+    int x=1, y=15;
+    Caballos c1,c2,c3,c4,c5,c6,c7;
+
+
+
+	printf("----------------------¡Bienvenidos a la carrera!--------------------\n");
+
+    printf("Ingresar el numero de caballos a participar, puede ser un minimo de 2 y un maximo de 7: ");
+    scanf("%d", &ncaballos);
+
+
+	while(ncaballos < 2 || ncaballos > 7){
+        printf("La opcion esta fuera del rango mencionado(2-7): ");
+        scanf("%d", &ncaballos);
+	}
+
+    printf("\n");
+
+	printf("Ingresar numero de vueltas, puede ser de 1 a 4 vueltas: ");
+	scanf("%d", &nvueltas);
+
+	while(nvueltas < 1 || nvueltas > 4){
+        printf("Opcion fuera del rango mencionado(1-4): ");
+        scanf("%d \n", &nvueltas);
+	}
+
+    printf("\n");
+
+	printf("Ingresa el largo de la pista(30, 40, 50 o 60 metros):");
+	scanf("%d", &largopista);
+
+	while(largopista!= 30 && largopista!=40 && largopista!=50 && largopista!=60){
+        printf("Opcion fuera del rango mencionado(30,40,50 o 60):");
+        scanf("%d \n", &largopista);
+	}
+
+	printf("\n");
+	printf("Número caballos: %d \n", ncaballos);
+	printf("Número vueltas: %d \n", nvueltas);
+	printf("\n");
+
+    initscr();
+	curs_set(0);
+	erase();
+	refresh();
+	srand(time(NULL));
+
+   c1.caballo='A';
+	c1.carril=1;
+	c1.pos=1;
+
+	c2.caballo='B';
+	c2.carril=2;
+	c2.pos=1;
+
+	c3.caballo='C';
+	c3.carril=3;
+	c3.pos=1;
+
+	c4.caballo='D';
+	c4.carril=4;
+	c4.pos=1;
+
+	c5.caballo='E';
+	c5.carril=5;
+	c5.pos=1;
+
+	c6.caballo='F';
+	c6.carril=6;
+	c6.pos=1;
+
+	c7.caballo='G';
+	c7.carril=7;
+	c7.pos=1;
+	
+	
+
+refresh();
+
+    getch();
+	endwin();
+
+	pthread_exit(NULL);
+	return 0;
+}
