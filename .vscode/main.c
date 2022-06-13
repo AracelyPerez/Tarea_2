@@ -132,11 +132,11 @@ int main() {
 
 
 	/*-----------------------------------------------------------------------------------*/
-
+/*
 #include<pthread.h>
 #include<unistd.h>
 #include<stdlib.h>
-//#include<ncurses.h>
+#include<ncurses.h>
 #include <time.h>
 
 int ncaballos, nvueltas, largopista;
@@ -244,3 +244,4 @@ refresh();
 	pthread_exit(NULL);
 	return 0;
 }
+*/
